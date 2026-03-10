@@ -87,4 +87,4 @@ To push to Git:
    ```bash
    git remote add origin <your-repo-url>
    git push -u origin main
-   ```
+   ```"# Smart-Hostel" 
