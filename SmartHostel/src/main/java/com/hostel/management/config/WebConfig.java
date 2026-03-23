@@ -43,6 +43,7 @@ public class WebConfig {
             .sessionManagement(session ->
                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/", "/index.html", "/vite.svg", "/assets/**").permitAll()
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
@@ -82,10 +83,11 @@ public class WebConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        // Allow localhost for dev and ALL Vercel origins for prod
+        // Allow localhost for dev and ALL Vercel/Render origins for prod
         config.setAllowedOriginPatterns(List.of(
-            "http://localhost:*", 
-            "https://*.vercel.app"
+            "http://localhost:*",
+            "https://*.vercel.app",
+            "https://*.onrender.com"
         ));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));

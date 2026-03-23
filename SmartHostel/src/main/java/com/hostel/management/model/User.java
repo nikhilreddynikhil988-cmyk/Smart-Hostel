@@ -17,6 +17,7 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
+    @com.fasterxml.jackson.annotation.JsonIgnore
     @Column(nullable = false)
     private String password;
 
@@ -39,10 +40,11 @@ public class User {
     }
 
     // ✅ Constructors
-    public User() {}
+    public User() {
+    }
 
     public User(Long id, String name, String email, String password,
-                Role role, String phone, String roomNumber, LocalDateTime createdAt) {
+            Role role, String phone, String roomNumber, LocalDateTime createdAt) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -54,27 +56,75 @@ public class User {
     }
 
     // ✅ Getters
-    public Long getId()                  { return id; }
-    public String getName()              { return name; }
-    public String getEmail()             { return email; }
-    public String getPassword()          { return password; }
-    public Role getRole()                { return role; }
-    public String getPhone()             { return phone; }
-    public String getRoomNumber()        { return roomNumber; }
-    public LocalDateTime getCreatedAt()  { return createdAt; }
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getRoomNumber() {
+        return roomNumber;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
 
     // ✅ Setters
-    public void setId(Long id)                         { this.id = id; }
-    public void setName(String name)                   { this.name = name; }
-    public void setEmail(String email)                 { this.email = email; }
-    public void setPassword(String password)           { this.password = password; }
-    public void setRole(Role role)                     { this.role = role; }
-    public void setPhone(String phone)                 { this.phone = phone; }
-    public void setRoomNumber(String roomNumber)       { this.roomNumber = roomNumber; }
-    public void setCreatedAt(LocalDateTime createdAt)  { this.createdAt = createdAt; }
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setRoomNumber(String roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 
     // ✅ Builder
-    public static Builder builder() { return new Builder(); }
+    public static Builder builder() {
+        return new Builder();
+    }
 
     public static class Builder {
         private Long id;
@@ -82,13 +132,40 @@ public class User {
         private Role role;
         private LocalDateTime createdAt;
 
-        public Builder id(Long id)                   { this.id = id; return this; }
-        public Builder name(String name)             { this.name = name; return this; }
-        public Builder email(String email)           { this.email = email; return this; }
-        public Builder password(String password)     { this.password = password; return this; }
-        public Builder role(Role role)               { this.role = role; return this; }
-        public Builder phone(String phone)           { this.phone = phone; return this; }
-        public Builder roomNumber(String r)          { this.roomNumber = r; return this; }
+        public Builder id(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder email(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public Builder password(String password) {
+            this.password = password;
+            return this;
+        }
+
+        public Builder role(Role role) {
+            this.role = role;
+            return this;
+        }
+
+        public Builder phone(String phone) {
+            this.phone = phone;
+            return this;
+        }
+
+        public Builder roomNumber(String r) {
+            this.roomNumber = r;
+            return this;
+        }
 
         public User build() {
             return new User(id, name, email, password, role, phone, roomNumber, createdAt);
